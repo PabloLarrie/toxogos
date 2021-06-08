@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  toxogos_api:
+    build:
+      context: .
+    image: toxogos_api
+    container_name: toxogos_api
+    volumes:
+      - .:/app
+    ports:
+      - "8800:8000"
+    env_file:
+      - ./settings.env
+    depends_on:
+      - postgres
+
+
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./settings.env
