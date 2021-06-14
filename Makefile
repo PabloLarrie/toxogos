@@ -6,3 +6,9 @@ manage:
 
 chown:
 	sudo chown `whoami` -R .
+
+shell:
+	docker-compose run toxogos_api python manage.py shell_plus
+
+loadgames:
+	docker-compose run toxogos_api python manage.py loaddata games/fixtures/games.json

@@ -1,0 +1,44 @@
+[
+{
+    "model": "games.game",
+    "pk": 1,
+    "fields": {
+        "name": "Phuria",
+        "description": "Cool game for not having friends anymore",
+        "min_players": 2,
+        "max_players": 6,
+        "duration": 30,
+        "min_age": 14,
+        "game_type": "cards",
+        "designers": [1]
+    }
+},
+{
+    "model": "games.game",
+    "pk": 2,
+    "fields": {
+        "name": "Cossia",
+        "description": "Cool game for recreating yourself",
+        "min_players": 2,
+        "max_players": 6,
+        "duration": 20,
+        "min_age": 10,
+        "game_type": "rpg",
+        "designers": [2]
+    }
+},
+    {
+    "model": "games.game",
+    "pk": 1,
+    "fields": {
+        "name": "Kasta",
+        "description": "Cool game for getting employed",
+        "min_players": 1,
+        "max_players": 1,
+        "duration": 20,
+        "min_age": 14,
+        "game_type": "euro",
+        "designers": [3]
+    }
+}
+]

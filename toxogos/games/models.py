@@ -8,7 +8,7 @@ class Game(models.Model):
     description = models.TextField(max_length=300, null=True)
     min_players = models.PositiveSmallIntegerField(default=1)
     max_players = models.PositiveSmallIntegerField(null=True)
-    duration = models.DurationField(null=True)
+    duration = models.PositiveIntegerField(default=15, null=True)
     min_age = models.PositiveSmallIntegerField(default=0)
     game_type = models.CharField(max_length=50, choices=TypeGame.choices)
     designers = models.ManyToManyField("games.Designers", related_name="games")
@@ -19,3 +19,9 @@ class Designers(models.Model):
     email = models.EmailField(unique=True)
 
 
+class GameDesigners(models.Model):
+    game = models.ForeignKey("games.Game", on_delete=models.CASCADE, related_name="game_designers")
+    designers = models.ForeignKey("games.Designers", on_delete=models.CASCADE, related_name="game_designers")
+
+    class Meta:
+        unique_together = (("game", "designers"),)
