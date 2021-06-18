@@ -10,11 +10,13 @@ pytestmark = pytest.mark.django_db
 class TestGames:
 
     def test_game(self):
-        larrie = Designers(id=1, name="Larrie", email="aaa@hotmail.com")
-        dada = Game(id=1, name="Cassia", game_type=TypeGame.CARDS)
-        rel = GameDesigners(id=1, game=dada, designers=larrie)
-        assert rel.game.name == "Cassia"
-        assert rel.designers.name == "Larrie"
+        larrie = Designers.objects.create(id=1, name="Larrie", email="aaa@hotmail.com")
+        # larrie.save()
+        dada = Game.objects.create(id=1, name="Cassia", game_type=TypeGame.CARDS)
+        # rel = GameDesigners(id=1, game=dada, designers=larrie)
+        larrie.games.add(dada)
+        assert larrie.games.count() == 1
+        assert larrie.games.first().name == "Cassia"
 
     def test_game2(self):
         larrie = DesignerFactory()

@@ -1,0 +1,39 @@
+[
+{
+    "model": "games.designers",
+    "pk": 1,
+    "fields": {
+        "name": "Larrie",
+        "email": "fuckingboss@hotmail.com",
+        "description": "Cool guy doing cool things"
+    }
+},
+{
+    "model": "games.designers",
+    "pk": 2,
+    "fields": {
+        "name": "Jotajas",
+        "email": "notbad@hotmail.com",
+        "description": "Not bad guy. He has a crush... on his crushed car"
+    }
+},
+{
+    "model": "games.designers",
+    "pk": 3,
+    "fields": {
+        "name": "Montoto",
+        "email": "Ineedamop@hotmail.com",
+        "description": "Sometimes he cries"
+    }
+},
+{
+    "model": "games.designers",
+    "pk": 4,
+    "fields": {
+        "name": "Kike",
+        "email": "justkike@hotmail.com",
+        "description": "Just kike being kike"
+
+    }
+}
+]

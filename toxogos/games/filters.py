@@ -15,7 +15,7 @@ class GamesFilter(FilterSet):
             "duration",
             "min_age",
             "game_type",
-            "designers",
+            "designer",
         ]
 
 

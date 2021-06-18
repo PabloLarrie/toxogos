@@ -15,6 +15,15 @@ services:
     depends_on:
       - postgres
 
+  frontend:
+    build:
+      context: ./frontend
+    image: toxogos_frontend
+    container_name: frontend
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "8880:8880"
 
   postgres:
     image: postgres

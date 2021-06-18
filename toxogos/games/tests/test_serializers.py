@@ -4,7 +4,6 @@ from games.constants import TypeGame
 from games.serializers import GameSerializer, DesignersSerializer
 from games.models import Game, Designers
 
-
 pytestmark = pytest.mark.django_db
 
 
@@ -25,14 +24,14 @@ class TestGamesSerializers:
             "id": 24,
             "name": "Phuria",
             "game_type": TypeGame.CARDS,
-            "designers": {"id": designer_conf.id}
+            "designer": [{"id": designer_conf.id}]
         }
         serializer = GameSerializer(data=values)
-        assert serializer.is_valid() 
+        assert serializer.is_valid(raise_exception=True)
         serializer.save()
         assert Game.objects.filter(name=values["name"])
 
-    def test_create_designer(self, designer_conf):
+    def test_create_designer(self):
         values = {
             "id": 1,
             "name": "Manolo",
@@ -41,4 +40,4 @@ class TestGamesSerializers:
         serializer = DesignersSerializer(data=values)
         assert serializer.is_valid()
         serializer.save()
-        # assert Game.objects.filter(name=values["name"])
+        assert Designers.objects.first().name == "Manolo"

@@ -3,15 +3,35 @@ from rest_framework import serializers
 from games.models import Game, Designers
 
 
+class DesignersSimpleSerializer(serializers.ModelSerializer): #Relacionar otro objeto con este
+    id = serializers.IntegerField(read_only=False)
+    name = serializers.CharField(required=False)
+    email = serializers.CharField(required=False)
+
+    class Meta:
+        model = Designers
+        fields = [
+            "id",
+            "name",
+            "email",
+        ]
+
+
+class DesignersSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model = Designers
+        fields = [
+            "id",
+            "name",
+            "email",
+        ]
+
+
 class GameSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    designers = serializers.SerializerMethodField()
-
-    def get_designers(self, object):
-        designers_list = []
-        for designer in object.designers.all():
-            designers_list.append(designer.name)
-        return designers_list
+    designer = DesignersSimpleSerializer(many=True)
 
     class Meta:
         model = Game
@@ -24,8 +44,16 @@ class GameSerializer(serializers.ModelSerializer):
             "duration",
             "min_age",
             "game_type",
-            "designers",
+            "designer",
         ]
+
+    def create(self, validated_data):
+        designers_data = validated_data.pop("designer", [])
+        new_game = super().create(validated_data)
+        for v in designers_data:
+            new_game.designer.add(Designers.objects.get(id=v["id"]))
+        new_game.save()
+        return new_game
 
 
 class GameSimpleSerializer(serializers.ModelSerializer):
@@ -41,16 +69,5 @@ class GameSimpleSerializer(serializers.ModelSerializer):
         ]
 
 
-class DesignersSerializer(serializers.ModelSerializer):
-    id = serializers.IntegerField(read_only=True)
-    name = serializers.CharField(read_only=True)
-
-    class Meta:
-        model = Designers
-        fields = [
-            "id",
-            "name",
-            "email",
-        ]
 
 

@@ -10,7 +10,7 @@
         "duration": 30,
         "min_age": 14,
         "game_type": "cards",
-        "designers": [1]
+        "designer": [1]
     }
 },
 {
@@ -24,12 +24,12 @@
         "duration": 20,
         "min_age": 10,
         "game_type": "rpg",
-        "designers": [2]
+        "designer": [1]
     }
 },
     {
     "model": "games.game",
-    "pk": 1,
+    "pk": 3,
     "fields": {
         "name": "Kasta",
         "description": "Cool game for getting employed",
@@ -38,7 +38,7 @@
         "duration": 20,
         "min_age": 14,
         "game_type": "euro",
-        "designers": [3]
+        "designer": [1]
     }
 }
 ]

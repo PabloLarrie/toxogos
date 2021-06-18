@@ -12,7 +12,7 @@ class GameViewSet(ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Game.objects.all()
     filter_backends = (SearchFilter, RestFrameworkFilterBackend, OrderingFilter)
-    search_fields = ["name", "min_players", "game_type", "duration"]
+    search_fields = ["name", "designer__name", "designer__email"]
     filterset_class = GamesFilter
     ordering = ("id",)
 

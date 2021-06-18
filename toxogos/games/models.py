@@ -11,12 +11,14 @@ class Game(models.Model):
     duration = models.PositiveIntegerField(default=15, null=True)
     min_age = models.PositiveSmallIntegerField(default=0)
     game_type = models.CharField(max_length=50, choices=TypeGame.choices)
-    designers = models.ManyToManyField("games.Designers", related_name="games")
+    designer = models.ManyToManyField("games.Designers", through="GameDesigners")
 
 
 class Designers(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
+    description = models.TextField(max_length=300, null=True)
+    games = models.ManyToManyField("games.Game", through="GameDesigners", blank=True)
 
 
 class GameDesigners(models.Model):
